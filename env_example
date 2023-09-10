@@ -5,4 +5,7 @@ URL_FOR_SLUG = 'https://78.ru/api/graphql' # ссылка для сбора сп
 URL_FOR_POST = 'https://78.ru/news' # ссылка для сбора определенных новостей
 VARIABLES = 'U2VjdGlvbjo1OTg4YmM3MTNhODdiYzUyMDMwMzUyMzQ=' # значение для обращение к API
 
+DEBUG = 1 # отключения режима DEBUG
+DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+
 INTERVAL = 900 # Интервал в секундах (15 минут = 900 секунд)
