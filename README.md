@@ -4,9 +4,12 @@
 
 ### Web приложения для сбора новостей и работы с ними в админ панели Django.
 
-Призапуске парсер собирает последние 13 новостей. Далее каждые 15 минут собирает новости со страницы https://78.ru/news
-Новости сохраняются в БД SQLite. Есть возможность выгрузить выделенные новости в JSON файл.
-В БД сохраняются следующие данные.
+При запуске парсер первый раз собирает последние 13 новостей с сайта https://78.ru/news. Далее каждые 15 минут собирает последние новости.   В проекте используется брокер задач Celery для праралельной работы парсера. 
+Новости сохраняются в БД SQLite. 
+С помощью админ панели возможно просматривать сохраненые данные.
+Есть возможность выгрузить выделенные новости в JSON файл.
+В БД сохраняются следующие данные:
+
 <ul>
 post__url - прямая ссылка на новость<br>
 post__title - заголовок новости<br>
@@ -37,3 +40,57 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 ```
+- Клонируйте репозиторий командой:
+```
+git clone git@github.com:oitczvovich/parser_78.git
+``` 
+- Перейдите в каталог командой:
+```
+cd project
+```
+- Создаем файл .env с переменными окружения пример в файле `.env_example`
+
+
+### Использование чистой БД
+- Необходимо удалить текущую БД.
+
+```
+rm posts.sqlite3
+```
+- Выполните команду для запуска контейнера:
+
+```
+sudo docker-compose up -d --build
+``` 
+
+- Выполнить миграции и подключить статику
+```
+sudo docker-compose exec parser_78_web_1 python manage.py makemigrations
+sudo docker-compose exec parser_78_web_1 python manage.py migrate
+sudo docker-compose exec parser_78_web_1 python manage.py collectstatic --noinput
+``` 
+- Создадим суперпользователя:
+```
+sudo docker-compose exec parser_78_web_1 python manage.py createsuperuser
+``` 
+### Использование текущей БД
+
+- Выполните команду для запуска контейнера:
+
+```
+sudo docker-compose up -d --build
+``` 
+
+### Проект
+Работает по адресу:
+
+http://84.252.137.243:1337/admin/<br>
+username: SuperUser<br>
+password: GERvre4tvaSAAG453gr<br>
+
+
+## Авторы проекта
+### Скалацкий Владимир
+e-mail: skalakcii@yandex.ru<br>
+https://github.com/oitczvovi<br>
+Telegramm: @OitcZvovich

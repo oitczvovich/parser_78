@@ -1,14 +1,14 @@
-import json
-import hashlib
 import datetime
+import hashlib
+import json
 import os
-import requests_cache
 import sqlite3
+
+import requests_cache
 from bs4 import BeautifulSoup
-from requests_html import HTMLSession
 from celery import shared_task
 from dotenv import load_dotenv
-import os
+from requests_html import HTMLSession
 
 load_dotenv()
 URL_FOR_SLUG = os.getenv('URL_FOR_SLUG')
@@ -94,7 +94,6 @@ def get_post():
                 ''', (post_id, post_url, post_title, post_text, date_create))
 
                 conn.commit()
-                # conn.close()
     conn.close()
 
 

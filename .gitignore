@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 test_task
+http_cache.sqlite
+parser.json
