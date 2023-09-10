@@ -1,0 +1,8 @@
+SECRET_KEY = 'django'
+
+# ссылки для работы парсера
+URL_FOR_SLUG = 'https://78.ru/api/graphql' # ссылка для сбора списка новостей с главной страницы
+URL_FOR_POST = 'https://78.ru/news' # ссылка для сбора определенных новостей
+VARIABLES = 'U2VjdGlvbjo1OTg4YmM3MTNhODdiYzUyMDMwMzUyMzQ=' # значение для обращение к API
+
+INTERVAL = 900 # Интервал в секундах (15 минут = 900 секунд)
